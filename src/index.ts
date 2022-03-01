@@ -1,10 +1,16 @@
-const express = require("express");
+import express from "express";
 const app = express();
 const PORT = 8080;
 app.use(express.json());
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
-let tracklist = [
+interface Track {
+  id: String;
+  name: String;
+  author: String;
+}
+
+let tracklist: Track[] = [
   {
     id: "0",
     name: "La Barbacoa",
