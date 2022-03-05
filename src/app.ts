@@ -6,8 +6,10 @@ import logger from "morgan";
 
 const app = express();
 const PORT = 8080;
+
 app.use(logger("dev"));
 app.use(express.json());
+app.use(express.static("public"));
 app.use("/track", trackRouter);
 app.use("/user", userRouter);
 
