@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    /* Docs: https://www.typescriptlang.org/tsconfig */ "target": "ES2020",
-    "module": "commonjs",
+    /* Docs: https://www.typescriptlang.org/tsconfig */
+    "target": "esnext",
+    "module": "esnext",
     "outDir": "bin",
     "rootDir": "src",
     "strict": true,
