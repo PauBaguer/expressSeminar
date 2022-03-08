@@ -5,7 +5,8 @@
   "main": "bin/app.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node ."
+    "start": "tsc && NODE_ENV=production node .",
+    "dev": "tsc && NODE_ENV=development node ."
   },
   "author": "",
   "license": "ISC",
