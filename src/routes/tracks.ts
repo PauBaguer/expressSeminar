@@ -1,14 +1,12 @@
 import express from "express";
 import { TrackModel } from "../models/track.js";
 
-let router = express.Router();
-
-router.get("/", async (req, res) => {
+async function getTraks(req, res) {
   const tracks = await TrackModel.find();
   res.status(200).send(tracks);
-});
+}
 
-router.post("/", async (req, res) => {
+async function postTrack(req, res) {
   const { name, author } = req.body;
   if (await TrackModel.findOne({ name: name, author: author })) {
     res.status(406).send({ message: "Track already in the system." });
@@ -20,9 +18,9 @@ router.post("/", async (req, res) => {
 
   const tracks = await TrackModel.find();
   res.status(201).send(tracks);
-});
+}
 
-router.delete("/:id", async (req, res) => {
+async function deleteById(req, res) {
   const { id } = req.params;
   const delResult = await TrackModel.deleteOne({ _id: id });
 
@@ -33,9 +31,9 @@ router.delete("/:id", async (req, res) => {
 
   const tracks = await TrackModel.find();
   res.status(200).send(tracks);
-});
+}
 
-router.delete("/deleteByName/:name", async (req, res) => {
+async function deleteByName(req, res) {
   const { name } = req.params;
   const delResult = await TrackModel.deleteOne({ name: name });
 
@@ -46,6 +44,12 @@ router.delete("/deleteByName/:name", async (req, res) => {
 
   const tracks = await TrackModel.find();
   res.status(200).send(tracks);
-});
+}
 
+let router = express.Router();
+
+router.get("/", getTraks);
+router.post("/", postTrack);
+router.delete("/:id", deleteById);
+router.delete("/deleteByName/:name", deleteByName);
 export default router;

@@ -3,12 +3,14 @@ import mongoose from "mongoose";
 import trackRouter from "./routes/tracks.js";
 import userRouter from "./routes/users.js";
 import logger from "morgan";
+import cors from "cors";
 
 const app = express();
 const PORT = 8080;
 
 app.use(logger("dev"));
 app.use(express.json());
+app.use(cors());
 app.use(express.static("public"));
 app.use("/track", trackRouter);
 app.use("/user", userRouter);
