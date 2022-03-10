@@ -47,28 +47,11 @@ async function deleteById(req, res) {
   res.status(200).send(users);
 }
 
-async function assignFavouriteTrack(req, res) {
-  const { userName, trackName } = req.params;
-  const track = await TrackModel.find({ name: trackName });
-
-  await UserModel.updateOne(
-    { name: userName },
-    //@ts-ignore
-    { $set: { favouriteTrack: new mongoose.Types.ObjectId() } }
-  );
-
-  console.log(await UserModel.findOne({ name: userName }));
-  res.status(200);
-
-  //user.favouriteTrack = track._id;
-}
-
 let router = express.Router();
 
 router.get("/", getAll);
 router.get("/:name", getByName);
 router.post("/", postUser);
 router.delete("/:id", deleteById);
-router.put("/favouriteTrack/:userName/:trackName", assignFavouriteTrack);
 
 export default router;
